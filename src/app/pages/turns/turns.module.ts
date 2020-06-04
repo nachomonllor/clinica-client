@@ -6,10 +6,11 @@ import { PatientsRoutingModule } from './patients-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { PatientService } from './patient.service';
 import { MaterialModule } from '../../shared/material.module';
-import { PatientListComponent } from './patient-list/patient-list.component';
+import { PatientListComponent } from './turn-list/turn-list.component';
 import { PatientDetailComponent } from './patient-detail/patient-detail.component';
+import { NotificationService } from '../../services/notification.service';
 import { PatientsComponent } from './patients.component';
-import { PatientListResolverGuard } from './patient-list/patient-list-resolver.guard';
+import { PatientListResolverGuard } from './turn-list/turn-list-resolver.guard';
 import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
