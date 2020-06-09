@@ -13,12 +13,15 @@ import { UsersComponent } from './users.component';
 import { UserListResolverGuard } from './user-list/user-list-resolver.guard';
 import { PipesModule } from '../../../pipes/pipes.module';
 import { RolesModule } from '../roles/roles.module';
+import { UserSearchComponent } from './user-search/user-search.component';
+import { SpecialitiesModule } from '../specialities/specialities.module';
 
 @NgModule({
   declarations: [
     UsersComponent,
     UserListComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    UserSearchComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +32,11 @@ import { RolesModule } from '../roles/roles.module';
     UsersRoutingModule,
     PipesModule,
     RouterModule,
-    RolesModule
+    RolesModule,
+    SpecialitiesModule
+  ],
+  exports: [
+    UserSearchComponent
   ],
   providers: [UserService, NotificationService, UserListResolverGuard]
 })

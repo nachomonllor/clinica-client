@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { User } from '../user.model';
 import { NotificationService } from '../../../../services/notification.service';
 import { UserService } from '../user.service';
+import { validRoles } from '../../../../utils/enums';
 
 declare var $: any;
 @Component({
@@ -15,11 +16,14 @@ declare var $: any;
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.scss']
 })
+
 export class UserDetailComponent implements OnInit, OnDestroy {
   user: User;
+  isProfessional = false;
   userSubscription: Subscription = new Subscription();
   form: FormGroup = new FormGroup({
     id: new FormControl(null),
+    SpecialityId: new FormControl([]),
     fullname: new FormControl('', Validators.required),
     lastname: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -42,7 +46,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.userSubscription.unsubscribe();
   }
-  ngOnInit() {}
+  ngOnInit() { }
   onClear() {
     this.onClose();
   }
@@ -50,7 +54,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.dialogRef.close(refresh);
   }
   onSubmit() {
-
+    debugger
     if (this.form.valid) {
       if (!this.form.get('id').value) {
         this._userService.add<User>(this.form.value).subscribe(
@@ -88,8 +92,10 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.userSubscription = this._userService
       .getSingle<User>(data.id)
       .subscribe((res: any) => {
-        debugger
         this.user = res.payload;
       });
+  }
+  onSelectionChange(evt) {
+    this.isProfessional = (evt.indexOf(validRoles.Profesional) >= 0);
   }
 }

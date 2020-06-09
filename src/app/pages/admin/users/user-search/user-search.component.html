@@ -1,0 +1,20 @@
+<mat-form-field>
+  <mat-select
+    [formControl]="comboCtrl"
+    placeholder="Selecciona profesional"
+    required
+    #singleSelect
+  >
+    <mat-option>
+      <ngx-mat-select-search
+        [formControl]="comboFilterCtrl"
+        placeholderLabel="Busca un profesional..."
+        [noEntriesFoundLabel]="'No hay resultados'"
+      ></ngx-mat-select-search>
+    </mat-option>
+    <mat-option *ngFor="let c of filteredData | async" [value]="c.id">
+      {{ c.fullname }}
+    </mat-option>
+  </mat-select>
+  <mat-error>requerido</mat-error>
+</mat-form-field>
