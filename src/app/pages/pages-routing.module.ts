@@ -20,17 +20,17 @@ const routes: Routes = [
     canActivate: [AdminGuard],
     loadChildren: () => import('./admin/roles/roles.module').then(m => m.RolesModule)
   }, {
-    path: 'specialities',
+    path: 'categories',
     canActivate: [AdminGuard],
-    loadChildren: () => import('./admin/specialities/specialities.module').then(m => m.SpecialitiesModule)
+    loadChildren: () => import('./admin/categories/categories.module').then(m => m.CategoriesModule)
   }, {
     path: 'patients',
     canActivate: [LoginGuard],
     loadChildren: () => import('./patients/patients.module').then(m => m.PatientsModule)
   }, {
-    path: 'turns',
+    path: 'appointments',
     canActivate: [LoginGuard],
-    loadChildren: () => import('./turns/turns.module').then(m => m.TurnsModule)
+    loadChildren: () => import('./appointments/appointments.module').then(m => m.AppointmentsModule)
   },
 ];
 
