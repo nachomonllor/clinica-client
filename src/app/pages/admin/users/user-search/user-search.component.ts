@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, EventEmitter, Output } from '@angular/core';
 import { ComboSearchComponent } from '../../../../shared/combo-search/combo-search.component';
 
 import { User } from '../user.model';
@@ -14,6 +14,7 @@ export class UserSearchComponent
 extends ComboSearchComponent<User> implements OnChanges {
   selected: string;
   @Input() roles: number[] = [];
+  @Output() userChanged = new EventEmitter<User[]>();
   constructor(public _userService: UserService) {
     super(_userService, false);
   }
@@ -21,7 +22,6 @@ extends ComboSearchComponent<User> implements OnChanges {
     if (!this.roles) {
       return;
     }
-    debugger
     return this.service
       .getAll<User>(filter, 'id', 'asc', 0, 0, this.roles)
       .subscribe((response: any) => {
@@ -38,6 +38,6 @@ extends ComboSearchComponent<User> implements OnChanges {
     const selected = _.filter(this.payload, (el) => {
       return el.id === evt.value[0];
     });
-    this.selected = selected[0].name;
+    this.userChanged.emit(selected[0]);
   }
 }
