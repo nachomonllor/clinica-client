@@ -3,17 +3,8 @@
     <div class="card box box-info">
       <div class="card-body">
         <div class="d-flex justify-content-between m-b-10">
-          <button
-            color="primary"
-            class="btn btn-outline-info waves-effect waves-light d-none d-sm-inline-flex"
-            routerLink="/appointments/new"
-          >
-            <mat-icon>add</mat-icon>
-            Crear
-          </button>
-
           <!-- <app-export-fab [options]="FabOptions" [fields]="fieldsColumns" [filter]="filter" [vertical]="true" [fileName]="fileName"></app-export-fab> -->
-          <mat-form-field class="search-form-field" floatLabel="never">
+          <!-- <mat-form-field class="search-form-field" floatLabel="never">
             <input matInput #input placeholder="Buscar..." autocomplete="off" />
             <button
               mat-button
@@ -25,7 +16,7 @@
             >
               <mat-icon>close</mat-icon>
             </button>
-          </mat-form-field>
+          </mat-form-field> -->
           <!-- <mat-checkbox [(ngModel)]="checked" (click)="showValue()">Mostrar deshabilitados</mat-checkbox> -->
         </div>
 
@@ -34,24 +25,24 @@
           <mat-table
             [dataSource]="dataSource"
           >
+          <ng-container matColumnDef="Patient">
+            <mat-header-cell *matHeaderCellDef>Paciente</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.Patient.User.firstname }} {{element.Patient.User.lastname }}</mat-cell>
+          </ng-container>
           <ng-container matColumnDef="Category">
             <mat-header-cell *matHeaderCellDef>Especialidad</mat-header-cell>
             <mat-cell *matCellDef="let element">{{element.Category.name }} </mat-cell>
           </ng-container>
-          <!-- <ng-container matColumnDef="professional">
-            <mat-header-cell *matHeaderCellDef>Profesional</mat-header-cell>
-            <mat-cell *matCellDef="let element">{{element.professional.firstname }} {{element.professional.lastname }} </mat-cell>
-          </ng-container>
           <ng-container matColumnDef="appointmentDate">
             <mat-header-cell *matHeaderCellDef>Fecha Turno</mat-header-cell>
-            <mat-cell *matCellDef="let element">{{element.appointmentDate | date: 'fullDate'}}</mat-cell>
+            <mat-cell *matCellDef="let element">{{element.appointmentDate | date: 'dd/MM/yyyy'}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="timeDate">
             <mat-header-cell *matHeaderCellDef>Hora Turno</mat-header-cell>
             <mat-cell *matCellDef="let element">{{element.appointmentDate | date: 'h:mm a'}}</mat-cell>
-          </ng-container> -->
-
-          <ng-container matColumnDef="active">
+          </ng-container>
+          
+          <ng-container matColumnDef="status">
               <mat-header-cell *matHeaderCellDef>
                 Atendido?
               </mat-header-cell>
@@ -59,11 +50,23 @@
                 <span
                   class="label label-rounded"
                   [ngClass]="{
-                    'label-warning': element.active,
-                    'label-danger': !element.active
+                    'label-warning': element.status === 1,
+                    'label-success': element.status === 2,
+                    'label-info': element.status === 3,
+                    'label-danger': element.status === 4
                   }"
                 >
-                  {{ element.active ? 'Pendiente' : 'Atendido' }}
+                  {{
+                    element.status === 1
+                      ? 'Pendiente'
+                      : element.status === 2
+                      ? 'Aceptado'
+                      : element.status === 3
+                      ? 'Atendido'
+                      : element.status === 4
+                      ? 'Cancelado'
+                      : ''
+                  }}
                 </span>
               </mat-cell>
             </ng-container>

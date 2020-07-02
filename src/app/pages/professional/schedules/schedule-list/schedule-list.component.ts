@@ -27,8 +27,11 @@ import { Schedule } from '../schedule.model';
 export class ScheduleListComponent implements OnInit {
   dataSource: MatTableDataSource<Schedule>;
   displayedColumns: string[] = [
+    'Patient',
     'Category',
-    'active',
+    'appointmentDate',
+    'timeDate',
+    'status',
     'actions',
   ];
   @ViewChild('input', { static: true }) input: ElementRef;
