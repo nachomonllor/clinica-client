@@ -4,6 +4,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginGuard } from '../services/guards/login.guard';
 import { VerifyTokenGuard } from '../services/guards/verify-token.guard';
 import { AdminGuard } from '../services/guards/admin.guard';
+import { ProfileComponent } from './admin/users/profile/profile.component';
+import { ProfessionalGuard } from '../services/guards/professional.guard';
 
 const routes: Routes = [
   {
@@ -12,13 +14,14 @@ const routes: Routes = [
     canActivate: [VerifyTokenGuard],
     data: { titulo: 'Dashboard' }
   }, {
+    path: 'profile',
+    canActivate: [LoginGuard],
+    component: ProfileComponent,
+    data: { titulo: 'Perfil de usuario'}
+  }, {
     path: 'users',
     canActivate: [AdminGuard],
     loadChildren: () => import('./admin/users/users.module').then(m => m.UsersModule)
-  }, {
-    path: 'roles',
-    canActivate: [AdminGuard],
-    loadChildren: () => import('./admin/roles/roles.module').then(m => m.RolesModule)
   }, {
     path: 'categories',
     canActivate: [AdminGuard],
@@ -31,6 +34,11 @@ const routes: Routes = [
     path: 'appointments',
     canActivate: [LoginGuard],
     loadChildren: () => import('./appointments/appointments.module').then(m => m.AppointmentsModule)
+  },
+  {
+    path: 'schedules',
+    canActivate: [ProfessionalGuard],
+    loadChildren: () => import('./professional/schedules/schedule.module').then(m => m.ScheduleModule)
   },
   { path: '**', component: DashboardComponent},
 ];
