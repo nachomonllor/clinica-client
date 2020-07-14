@@ -77,6 +77,22 @@
                 <span *ngSwitchCase="3">Paciente</span>
               </mat-cell>
             </ng-container>
+            <ng-container matColumnDef="is_verified">
+              <mat-header-cell *matHeaderCellDef>
+                Verificado
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <span
+                  class="label label-rounded"
+                  [ngClass]="{
+                    'label-inverse': element.is_verified,
+                    'label-danger': !element.is_verified
+                  }"
+                >
+                  {{ element.is_verified ? 'Verificado' : 'No Verificado' }}
+                </span>
+              </mat-cell>
+            </ng-container>
             <ng-container matColumnDef="active">
               <mat-header-cell *matHeaderCellDef>
                 Habilitado
@@ -85,7 +101,7 @@
                 <span
                   class="label label-rounded"
                   [ngClass]="{
-                    'label-success': element.active,
+                    'label-info': element.active,
                     'label-danger': !element.active
                   }"
                 >

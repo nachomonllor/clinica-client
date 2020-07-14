@@ -8,6 +8,8 @@ export interface IUser {
   password: string;
   confirmpassword?: string;
   role: number;
+  active: boolean;
+  is_verified: boolean;
   categories?: Category[];
   TimeSlot?: TimeSlot[];
   img?: string;
@@ -20,6 +22,8 @@ export class User implements IUser{
     public email: string,
     public password: string,
     public role: number,
+    public active: boolean,
+    public is_verified: boolean,
     public confirmpassword?: string,
     public categories?: Category[],
     public timeslot?: TimeSlot[],

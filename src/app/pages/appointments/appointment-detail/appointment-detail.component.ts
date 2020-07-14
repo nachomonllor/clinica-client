@@ -19,7 +19,6 @@ import { Router } from '@angular/router';
 })
 export class AppointmentDetailComponent implements OnInit, OnDestroy {
   @ViewChild('calendar') calendar: NgxCalendarComponent;
-  timeslot: any[] = [];
   professionals: User[] = [];
   professional: any;
   timeTable: string[];
@@ -45,13 +44,15 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
     public _httpService: HttpService,
   ) {
     this.url = `${environment.apiUrl}/api/appointment`;
-    this.form.get('CategoryId').valueChanges.subscribe(id => {
-      this._httpService.getSingle(`${environment.apiUrl}/api/user/${id}?categoryId=${id}`).subscribe((data: any) => {
-        this.professional = data.user;
-      });
-    });
+    // this.form.get('CategoryId').valueChanges.subscribe(id => {
+    //   this._httpService.getSingle(`${environment.apiUrl}/api/user/${id}?categoryId=${id}`).subscribe((data: any) => {
+    //     this.professional = data.user;
+    //   });
+    // });
     this.form.get('ProfessionalId').valueChanges.subscribe(id => {
-      this.timeslot = this.professional.Professional.timeslot;
+      this.professional = this.professionals.find((i: any) => {
+        return i.UserId === id;
+      });
     });
   }
   ngOnDestroy() {
@@ -76,7 +77,7 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
       Swal.fire({
         title: '¿Deseas Confirmar el Turno?',
         html: `
-            Estás a punto de agendar un turno con el profesional <strong>${this.professional.firstname} ${this.professional.lastname}</strong> en la especialidad de <strong>${this.category.name}</strong>
+            Estás a punto de agendar un turno con el profesional <strong>${this.professional.User.firstname} ${this.professional.User.lastname}</strong> en la especialidad de <strong>${this.category.name}</strong>
         `,
         icon: 'warning',
         showCancelButton: true,
@@ -135,7 +136,10 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
   }
   categoryChanged(category: Category) {
     this.category = category;
-    this.professionals = category.users;
+    this.professionals = category.professionals || null;
+    this.form.get('ProfessionalId').setValue(null);
+    this.form.get('ProfessionalId').setErrors(null);
+    this.professional  = null;
   }
 
   onChooseDate(date: any) {
@@ -157,7 +161,7 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
       this._notificationService.error('Ingresa una especialidad y un profesional antes de continuar');
       return false;
     }
-    const atendeeDays = this.timeslot.map(i => i.day);
+    const atendeeDays = this.professional.timeslot.map(i => i.day);
     if (!atendeeDays.includes(this.calendarValue.isoWeekday())) {
       this._notificationService.error('El profesional elegido no atiende el dia seleccionado, revisa los días en los que atiende e intenta nuevamente');
       return false;
@@ -166,7 +170,7 @@ export class AppointmentDetailComponent implements OnInit, OnDestroy {
   }
   private createTimeTable() {
     const x = 30; // minutes interval
-    const schedule: any = this.timeslot.find(i => i.day === this.calendarValue.isoWeekday());
+    const schedule: any = this.professional.timeslot.find(i => i.day === this.calendarValue.isoWeekday());
     const hourStart = +schedule.timeStart.split(':')[0];
     const hourEnd = +schedule.timeEnd.split(':')[0];
     let times = []; // time array

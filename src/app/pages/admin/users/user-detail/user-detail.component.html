@@ -172,11 +172,7 @@
                     />
                     <ngx-material-timepicker #defaultValue></ngx-material-timepicker>
                   </mat-form-field> 
-                  <!-- <ngx-timepicker-field
-                  placeholder="Inicio"
-                  [format]="24"
-                  [formControl]="timeslot.controls[i].get('timeStart')"
-                ></ngx-timepicker-field> -->
+             
                   <!-- <mat-checkbox
                     *ngIf="element.id === 2"
                     (click)="setDefaultTime($event)"
@@ -210,12 +206,18 @@
           </table>
         </div>
       </div>
-      <div class="row">
+      <div class="row my-4">
         <div class="col-12 col-sm-12 col-md-6">
           <mat-slide-toggle formControlName="active" ngchecked="[active]">
             Habilitado
           </mat-slide-toggle>
         </div>
+        <div class="col-12 col-sm-12 col-md-6">
+          <mat-slide-toggle formControlName="is_verified" ngchecked="[is_verified]">
+            Verificado?
+          </mat-slide-toggle>
+        </div>
+        
       </div>
 
       <div class="row m-t-10">

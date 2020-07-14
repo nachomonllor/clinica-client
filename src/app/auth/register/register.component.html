@@ -21,7 +21,7 @@
         <h3 class="box-title m-t-40 m-b-0">Registrate ahora</h3>
         <small>Crea una nueva cuenta!</small>
         <div class="form-group m-t-20">
-          <div class="col-xs-12">
+          <div class="col-12">
             <input
               formControlName="firstname"
               name="name"
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="form-group m-t-20">
-          <div class="col-xs-12">
+          <div class="col-12">
             <input
               formControlName="lastname"
               name="lastname"
@@ -45,7 +45,7 @@
           </div>
         </div>
         <div class="form-group">
-          <div class="col-xs-12">
+          <div class="col-12">
             <input
               formControlName="email"
               name="email"
@@ -57,7 +57,7 @@
           </div>
         </div>
         <div class="form-group">
-          <div class="col-xs-12">
+          <div class="col-12">
             <input
               formControlName="password"
               name="password"
@@ -69,7 +69,7 @@
           </div>
         </div>
         <div class="form-group">
-          <div class="col-xs-12">
+          <div class="col-12">
             <input
               formControlName="confirmPassword"
               name="confirmPassword"
@@ -80,6 +80,14 @@
             />
           </div>
         </div>
+        <div class="form-group">
+          <div class="col-12">
+            <label>Selecciona una Foto</label>
+            <input (change)="selectImage($event.target.files[0])" type="file" />
+          </div>
+        </div>
+
+
         <div
           class="form-group"
           *ngIf="form.errors?.areEquals && !form.pristine"
@@ -90,7 +98,7 @@
         </div>
 
         <div class="form-group text-center m-t-20">
-          <div class="col-xs-12">
+          <div class="col-12">
             <button
               class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light"
               type="submit"
@@ -99,6 +107,8 @@
             </button>
           </div>
         </div>
+
+
         <div class="form-group m-b-0">
           <div class="col-sm-12 text-center">
             <p>

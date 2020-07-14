@@ -88,6 +88,15 @@
             <ng-container matColumnDef="actions">
               <mat-header-cell *matHeaderCellDef></mat-header-cell>
               <mat-cell *matCellDef="let row">
+                <button *ngIf="row.status === 3"
+                  mat-button
+                  color="secondary"
+                  (click)="onFeedback(row.id)"
+                  matTooltip="Agregar Reseña al profesional"
+                >
+                  <mat-icon>feedback</mat-icon>
+                </button>
+
                 <button
                   mat-button
                   color="accent"

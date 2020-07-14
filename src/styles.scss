@@ -397,3 +397,22 @@ mat-form-field {
 .fadeIn {
   animation-name: fadeIn;
 }
+
+
+.timepicker-overlay {
+  z-index: 10000000 !important;
+}
+
+.timepicker-backdrop-overlay {
+  z-index: 10000000 !important;
+}
+.ngx-timepicker-control__input {
+  color: grey!important;
+}
+
+.swal2-container {
+  display: -webkit-box;
+  display: flex;
+  position: fixed;
+  z-index: 300000!important;
+}

@@ -17,6 +17,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { NotificationService } from '../../../../services/notification.service';
 import { Schedule } from '../schedule.model';
+import { ScheduleDetailComponent } from '../schedule-detail/schedule-detail.component';
 
 
 @Component({
@@ -52,56 +53,20 @@ export class ScheduleListComponent implements OnInit {
     });
   }
   onEdit(row) {
-    // const dialogRef = this.dialog.open(
-    //   TurnDetailComponent,
-    //   this.dialogConfig(row),
-    // );
-    // dialogRef.afterClosed().subscribe(() => {
-    //   this.loadPage();
-    // });
-  }
-  onDelete(id) {
-    Swal.fire({
-      title: '¿Está seguro?',
-      text: 'Estás a punto de cancelar el turno',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Sí, Cancelar!',
-      cancelButtonText: 'No',
-    }).then((result) => {
-      if (result.value) {
-        // this._scheduleService.delete<Appointment>(id).subscribe(
-        //   () => {
-        //     this.notificationService.success(
-        //       'El paciente seleccionado ha sido Eliminado',
-        //     );
-        //     this.loadPage();
-        //   },
-        //   (err) => {
-        //     console.log(err);
-        //     Swal.fire({
-        //       title: 'Reglas de Validación',
-        //       text: err,
-        //       icon: 'error',
-        //       showConfirmButton: false,
-        //       timer: 2000,
-        //       animation: false,
-        //     });
-        //   },
-        // );
-      }
+    const dialogRef = this.dialog.open(
+      ScheduleDetailComponent,
+      this.dialogConfig(row),
+    );
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
     });
   }
+
   onSearchClear() {
     if (this.input.nativeElement.value.length > 0) {
       this.input.nativeElement.value = '';
-      this.loadPage();
+      this.ngOnInit();
     }
-  }
-
-
-  loadPage() {
-   
   }
 
   dialogConfig(data?) {

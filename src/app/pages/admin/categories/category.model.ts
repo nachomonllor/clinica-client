@@ -3,7 +3,7 @@ export class Category{
   constructor(
     public name: string,
     public active: boolean,
-    public users?: User[], // profesionales
+    public professionals?: User[], // profesionales
     public id?: string
   ) {}
 }

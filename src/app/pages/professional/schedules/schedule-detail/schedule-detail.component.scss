@@ -1,0 +1,24 @@
+
+  .mat-form-field {
+    width: 100%;
+  }
+
+  button.mat-mini-fab.mat-warn {
+    position: absolute;
+    top: 5px;
+    right: 21px;
+  }
+
+  .mat-chip-list-wrapper {
+    display: block!important;
+  }
+
+  ul {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+
+    li {
+      list-style: none;
+    }
+  }

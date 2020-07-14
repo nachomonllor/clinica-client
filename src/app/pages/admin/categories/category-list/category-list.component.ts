@@ -55,7 +55,7 @@ export class CategoryListComponent implements OnInit {
     );
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.loadPage('asc');
+        this.ngOnInit();
       }
     });
   }
@@ -65,7 +65,7 @@ export class CategoryListComponent implements OnInit {
       this.dialogConfig(row),
     );
     dialogRef.afterClosed().subscribe((result) => {
-      this.loadPage(this.sort.direction);
+      this.ngOnInit();
     });
   }
   onDelete(id) {
@@ -78,38 +78,35 @@ export class CategoryListComponent implements OnInit {
       cancelButtonText: 'No',
     }).then((result) => {
       if (result.value) {
-        // this._httpService.delete<Category>(id).subscribe(
-        //   (resp: any) => {
-        //     this.notificationService.success(
-        //       'El rol seleccionado ha sido Eliminado',
-        //     );
-        //     this.loadPage();
-        //   },
-        //   (err) => {
-        //     console.log(err);
-        //     Swal.fire({
-        //       title: 'Reglas de Validación',
-        //       text: err,
-        //       icon: 'error',
-        //       showConfirmButton: false,
-        //       timer: 2000,
-        //       animation: false,
-        //     });
-        //   },
-        // );
+        this._httpService.delete<Category>(`${this.url}/${id}`).subscribe(
+          (resp: any) => {
+            Swal.fire(
+              'Atención',
+              'La categoria ha sido Eliminada',
+              'success',
+            );
+            this.ngOnInit();
+          },
+          (err) => {
+            console.log(err);
+            Swal.fire({
+              title: 'Error Validación',
+              text: err,
+              icon: 'error',
+              showConfirmButton: false,
+              timer: 2000,
+              animation: false,
+            });
+          },
+        );
       }
     });
   }
   onSearchClear() {
     if (this.input.nativeElement.value.length > 0) {
       this.input.nativeElement.value = '';
-      this.loadPage();
+      this.ngOnInit();
     }
-  }
-
-
-  loadPage(direction = this.sort.direction) {
- 
   }
 
   dialogConfig(data?) {

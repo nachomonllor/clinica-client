@@ -3,6 +3,7 @@
     [formControl]="comboCtrl"
     placeholder="Selecciona Profesional"
     required
+    [disabled]="disabled"
     #singleSelect
     (selectionChange)="onSelectionChange($event)"
   >

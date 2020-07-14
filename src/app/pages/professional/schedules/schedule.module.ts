@@ -9,6 +9,7 @@ import { SharedModule } from '../../../shared/shared.module';
 
 import { PipesModule } from '../../../pipes/pipes.module';
 import { ScheduleRoutingModule } from './schedule-routing.module';
+import { ScheduleDetailComponent } from './schedule-detail/schedule-detail.component';
 
 
 
@@ -20,12 +21,11 @@ import { ScheduleRoutingModule } from './schedule-routing.module';
     ReactiveFormsModule,
     ScheduleRoutingModule,
     PipesModule,
-    SharedModule,
-   
+    SharedModule
   ],
   declarations: [
     ScheduleComponent,
-   
+    ScheduleDetailComponent,
     ScheduleListComponent,
 
   ],

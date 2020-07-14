@@ -8,17 +8,18 @@ import { MaterialModule } from '../../shared/material.module';
 import { AppointmentListComponent } from './appointment-list/appointment-list.component';
 import { AppointmentDetailComponent } from './appointment-detail/appointment-detail.component';
 import { AppointmentsComponent } from './appointments.component';
-
 import { PipesModule } from '../../pipes/pipes.module';
 import { CategoriesModule } from '../admin/categories/categories.module';
 import { UsersModule } from '../admin/users/users.module';
 import { NgxCalendarModule } from 'ss-ngx-calendar';
+import { ReviewDetailComponent } from './review-detail/review-detail.component';
 
 @NgModule({
   declarations: [
     AppointmentsComponent,
     AppointmentListComponent,
-    AppointmentDetailComponent
+    AppointmentDetailComponent,
+    ReviewDetailComponent,
   ],
   imports: [
     CommonModule,

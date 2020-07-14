@@ -24,7 +24,6 @@ export class UserService extends HttpService {
     return this.post(this.url, user)
       .pipe(
         map((response: any) => {
-          Swal.fire('Usuario creado', user.email, 'success');
           return response.user;
         })
       )

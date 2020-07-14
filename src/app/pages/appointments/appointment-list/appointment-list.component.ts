@@ -13,6 +13,8 @@ import { NotificationService } from '../../../services/notification.service';
 import { Appointment } from '../appointment.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { HttpService } from '../../../services/http.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ReviewDetailComponent } from '../review-detail/review-detail.component';
 
 
 @Component({
@@ -34,6 +36,7 @@ export class AppointmentListComponent implements OnInit {
   @ViewChild('input', { static: true }) input: ElementRef;
   filter: string;
   url: string;
+  form: FormGroup;
   constructor(
     private dialog: MatDialog,
     private router: Router,
@@ -49,15 +52,14 @@ export class AppointmentListComponent implements OnInit {
       this.dataSource = appointments;
     });
   }
-
-  onEdit(row) {
-    // const dialogRef = this.dialog.open(
-    //   TurnDetailComponent,
-    //   this.dialogConfig(row),
-    // );
-    // dialogRef.afterClosed().subscribe(() => {
-    //   this.loadPage();
-    // });
+  onFeedback(id) {
+    const dialogRef = this.dialog.open(
+      ReviewDetailComponent,
+      this.dialogConfig(id),
+    );
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadPage();
+    });
   }
   onDelete(id) {
     Swal.fire({

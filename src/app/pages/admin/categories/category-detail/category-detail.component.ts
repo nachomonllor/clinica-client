@@ -1,3 +1,4 @@
+import { environment } from './../../../../../environments/environment';
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -7,7 +8,7 @@ import { Subscription } from 'rxjs';
 import { Category } from '../category.model';
 import { NotificationService } from '../../../../services/notification.service';
 import { HttpService } from '../../../../services/http.service';
-
+import Swal from 'sweetalert2';
 
 declare var $: any;
 @Component({
@@ -18,7 +19,7 @@ declare var $: any;
 export class CategoryDetailComponent implements OnInit, OnDestroy {
   Category: Category;
   CategorySubscription: Subscription = new Subscription();
-  permission = [[]];
+  url: string;
   form: FormGroup = new FormGroup({
     id: new FormControl(null),
     name: new FormControl(null, Validators.required),
@@ -30,6 +31,7 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _httpService: HttpService,
   ) {
+    this.url = `${environment.apiUrl}/api/category`;
     if (data) {
       this.populateForm(data);
     }
@@ -45,31 +47,37 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
     this.dialogRef.close(refresh);
   }
   onSubmit() {
-    // if (this.form.valid) {
-    //   if (!this.form.get('id').value) {
-    //     this._httpService.add<Category>(this.form.value).subscribe(
-    //       (resp: any) => {
-    //         this.onClose(true);
-    //         this.notificationService.success(':: La especialidad ha sido creado');
-    //       },
-    //       (err) => {
-    //         this.notificationService.error(`:: ${err}`);
-    //       },
-    //     );
-    //   } else {
-    //     this._httpService.update<Category>(this.form.value).subscribe(
-    //       (Category) => {
-    //         this.onClose(true);
-    //         this.notificationService.success(
-    //           ':: La especialidad ha sido actualizado',
-    //         );
-    //       },
-    //       (err) => {
-    //         this.notificationService.error(`:: ${err}`);
-    //       },
-    //     );
-    //   }
-    // }
+    if (this.form.valid) {
+      if (!this.form.get('id').value) {
+        this._httpService.post(this.url, this.form.value).subscribe(
+          (resp: any) => {
+            this.onClose(true);
+            Swal.fire(
+              'Atención :)',
+              'La especialidad ha sido creado',
+              'success',
+            );
+          },
+          (err) => {
+            this.notificationService.error(`:: ${err}`);
+          },
+        );
+      } else {
+        this._httpService.put<Category>(`${this.url}/${this.form.get('id').value}`, this.form.value).subscribe(
+          (category) => {
+            this.onClose(true);
+            Swal.fire(
+              'Atención :)',
+              'La especialidad ha sido actualizado',
+              'success',
+            );
+          },
+          (err) => {
+            this.notificationService.error(`:: ${err}`);
+          },
+        );
+      }
+    }
   }
   initializeFormGroup() {
     this.form.setValue({

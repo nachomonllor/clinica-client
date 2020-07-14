@@ -23,21 +23,22 @@
       ></app-category-search>
     </div>
     <div class="col-12 col-md-6">
-      <app-professional-search
+      <app-professional-search [disabled]="professionals.length === 0"
       [comboCtrl]="form.controls['ProfessionalId']"
+      [users]="professionals"
       >
       </app-professional-search>
 
     </div>
   </div>
-  <div class="row" *ngIf="timeslot.length>0">
+  <div class="row" *ngIf="professional?.timeslot.length>0">
     <div class="col-12 col-md-6">
       <div class="alert alert-primary text-center" role="alert">
         <strong>El Profesional elegido atiende los días</strong>
         <mat-chip-list aria-label="Dias">
           <mat-chip
             color="primary"
-            *ngFor="let schedule of timeslot"
+            *ngFor="let schedule of professional.timeslot"
           >
             {{
               schedule.day === 1
