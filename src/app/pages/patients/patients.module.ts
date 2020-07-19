@@ -14,7 +14,7 @@ import { PipesModule } from '../../pipes/pipes.module';
   declarations: [
     PatientsComponent,
     PatientListComponent,
-    PatientDetailComponent
+    PatientDetailComponent,
   ],
   imports: [
     CommonModule,

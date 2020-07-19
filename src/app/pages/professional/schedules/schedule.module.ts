@@ -10,8 +10,7 @@ import { SharedModule } from '../../../shared/shared.module';
 import { PipesModule } from '../../../pipes/pipes.module';
 import { ScheduleRoutingModule } from './schedule-routing.module';
 import { ScheduleDetailComponent } from './schedule-detail/schedule-detail.component';
-
-
+import { CustomFieldComponent } from '../../../components/customfields/custom-field.component';
 
 @NgModule({
   imports: [
@@ -27,7 +26,7 @@ import { ScheduleDetailComponent } from './schedule-detail/schedule-detail.compo
     ScheduleComponent,
     ScheduleDetailComponent,
     ScheduleListComponent,
-
+    CustomFieldComponent
   ],
 
   providers: [],

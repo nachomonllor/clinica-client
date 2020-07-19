@@ -89,6 +89,13 @@
               <mat-header-cell *matHeaderCellDef></mat-header-cell>
               <mat-cell *matCellDef="let row">
                 <button *ngIf="row.status === 3"
+                mat-icon-button
+                [routerLink]="['/appointments/polls', row.id]"
+                matTooltip="Encuesta"
+              >
+                <mat-icon>poll</mat-icon>
+              </button>
+                <button *ngIf="row.status === 3"
                   mat-button
                   color="secondary"
                   (click)="onFeedback(row.id)"
@@ -98,6 +105,7 @@
                 </button>
 
                 <button
+                  *ngIf="row.status === 1"
                   mat-button
                   color="accent"
                   (click)="onDelete(row.id)"

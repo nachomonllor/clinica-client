@@ -53,13 +53,13 @@ export class ScheduleListComponent implements OnInit {
     });
   }
   onEdit(row) {
-    const dialogRef = this.dialog.open(
-      ScheduleDetailComponent,
-      this.dialogConfig(row),
-    );
-    dialogRef.afterClosed().subscribe(() => {
-      this.ngOnInit();
-    });
+    // const dialogRef = this.dialog.open(
+    //   ScheduleDetailComponent,
+    //   this.dialogConfig(row),
+    // );
+    // dialogRef.afterClosed().subscribe(() => {
+    //   this.ngOnInit();
+    // });
   }
 
   onSearchClear() {

@@ -84,11 +84,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
         takeUntil(this.registerSubs$)
       )
       .subscribe((user) => {
+        debugger
         this.changeImage(user.id);
         Swal.fire('Usuario creado', user.email, 'success');
         this.router.navigate(['/login']);
-      },
-      );
+      }, err => {
+        debugger
+        Swal.fire('Error :(', err, 'error');
+      });
   }
   selectImage(file: File) {
     if (!file) {

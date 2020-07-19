@@ -9,7 +9,6 @@ export class VerifyTokenGuard implements CanActivate, CanActivateChild {
     public _authService: AuthService
   ) { }
   canActivate(): Promise<boolean> | boolean {
-    debugger
     return this.checkExpiresToken();
   }
   // tslint:disable-next-line: max-line-length
@@ -43,7 +42,7 @@ export class VerifyTokenGuard implements CanActivate, CanActivateChild {
       this._authService.logout();
       return false;
     }
-    console.log(payload);
+    // console.log(payload);
     return this.verifyRenew(payload.exp);
   }
   private tokenEval(exp: number) {

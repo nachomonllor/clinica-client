@@ -97,6 +97,9 @@ export class PatientListComponent implements OnInit {
       }
     });
   }
+  onSurvey() {
+    debugger
+  }
   onSearchClear() {
     if (this.input.nativeElement.value.length > 0) {
       this.input.nativeElement.value = '';

@@ -1,0 +1,25 @@
+<div class="row" *ngFor="let extra of customfields.controls; let i = index">
+  <div class="col-6">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Campo"
+        maxlength="100"
+        [readonly]="readonly"
+        [formControl]="form.controls['customfields'].get(i.toString()).get('field')"
+      />
+    </mat-form-field>
+  </div>
+  <div class="col-6">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Valor"
+        maxlength="100"
+        [readonly]="readonly"
+        [formControl]="form.controls['customfields'].get(i.toString()).get('value')"
+      />
+      <mat-error>requerido</mat-error>
+    </mat-form-field>
+  </div>
+</div>

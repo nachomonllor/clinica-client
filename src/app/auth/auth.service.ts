@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpService } from '../services/http.service';
 import { environment } from '../../environments/environment';
 import urljoin from 'url-join';
-import { throwError } from 'rxjs';
+import { throwError, timer } from 'rxjs';
 import Swal from 'sweetalert2';
 
 @Injectable({
@@ -76,7 +76,16 @@ export class AuthService extends HttpService {
         })
       );
   }
-
+  verify(id) {
+    const url = urljoin(environment.apiUrl, `/api/auth/verify/${id}`);
+    return this.http
+      .put(url, {})
+      .pipe(
+        catchError(err => {
+          return throwError(err);
+        })
+      );
+  }
   saveStorage(id: string, token: string, user: User, menu: any) {
     localStorage.setItem('id', id);
     localStorage.setItem('token', token);

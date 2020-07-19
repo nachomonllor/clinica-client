@@ -5,6 +5,9 @@ import { AppointmentListComponent } from './appointment-list/appointment-list.co
 import { AppointmentDetailComponent } from './appointment-detail/appointment-detail.component';
 import { VerifyTokenGuard } from '../../services/guards/verify-token.guard';
 
+import { validRoles } from '../../utils/enums';
+import { SurveyjsComponent } from '../survey/surveyjs.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -17,11 +20,16 @@ const routes: Routes = [
         component: AppointmentListComponent
       },
       {
+        path: 'polls/:id',
+        component: SurveyjsComponent,
+        data: { titulo: 'Encuesta'}
+      },
+      {
         path: 'new',
         component: AppointmentDetailComponent,
         data: { titulo: 'Gestión de Turnos' },
       },
-      { path: ':id', component: AppointmentDetailComponent }
+      { path: ':id', component: AppointmentDetailComponent },
     ]
   }
 ];
