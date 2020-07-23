@@ -26,7 +26,7 @@
       </span>
     </mat-select-trigger>
     <mat-option *ngFor="let c of filteredData | async" [value]="c.id">
-      {{ c.name }}
+      {{ c.firstname }}
     </mat-option>
   </mat-select>
   <mat-error>requerido</mat-error>

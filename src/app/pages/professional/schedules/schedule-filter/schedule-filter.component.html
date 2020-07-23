@@ -1,0 +1,85 @@
+<form
+  #f="ngForm"
+  class="form-horizontal form-material"
+  id="filterForm"
+  [formGroup]="form"
+>
+  <div class="form-row">
+    <div class="col-lg-3 col-md-3 col-sm-12 d-inline-flex">
+      <mat-form-field>
+        <mat-select
+          formControlName="status"
+          placeholder="Selecciona un estado"
+          required
+        >
+          <mat-option value="1">Pendiente</mat-option>
+          <mat-option value="2">Aceptado</mat-option>
+          <mat-option value="3">Atentido</mat-option>
+          <mat-option value="4">Cancelado</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12 d-inline-flex">
+      <app-category-search
+        [isMultiple]="false"
+        [comboCtrl]="form.controls['CategoryId']"
+      ></app-category-search>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12 d-inline-flex">
+      <mat-form-field>
+        <input
+          matInput
+          formControlName="appointmentDate"
+          [matDatepicker]="appointmentDate"
+          placeholder="Fecha de Turno"
+          required
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="appointmentDate"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #appointmentDate></mat-datepicker>
+        <mat-error>requerido</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12 d-inline-flex">
+      <mat-form-field>
+        <input
+          matInput
+          formControlName="appointmentDate"
+          [matDatepicker]="appointmentDate"
+          placeholder="Fecha de Turno"
+          required
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="appointmentDate"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #appointmentDate></mat-datepicker>
+        <mat-error>requerido</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <button
+    *ngIf="!searching"
+    (click)="onSearch()"
+    href="#"
+    class="btn btn-info m-b-20 p-10 m-r-10 waves-effect waves-light"
+  >
+    Buscar
+  </button>
+  <button
+    *ngIf="searching"
+    [disabled]="true"
+    class="btn btn-info m-b-20 p-10 m-r-10 waves-effect waves-light"
+  >
+    <i class="fa fa-spin fa-sync"></i>
+    Espere...
+  </button>
+  <button
+    class="btn btn-accenting m-b-20 p-10 waves-effect waves-light"
+    (click)="onClear()"
+  >
+    Limpiar
+  </button>
+</form>

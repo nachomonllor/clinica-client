@@ -2,6 +2,20 @@
   <div class="col-md-12">
     <div class="card box box-info">
       <div class="card-body">
+        <div class="search-div">
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Filtros
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div>
+                <app-schedule-filter (searchValues)="onSearchFiltered($event)"></app-schedule-filter>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
         <div class="d-flex justify-content-between m-b-10">
           <!-- <app-export-fab [options]="FabOptions" [fields]="fieldsColumns" [filter]="filter" [vertical]="true" [fileName]="fileName"></app-export-fab> -->
           <!-- <mat-form-field class="search-form-field" floatLabel="never">
@@ -111,6 +125,7 @@
             ></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
           </mat-table>
+          <mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons></mat-paginator>
         </div>
       </div>
     </div>

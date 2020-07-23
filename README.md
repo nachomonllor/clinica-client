@@ -1,27 +1,18 @@
-# Clinica
+# Clinica Monllor
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
+Url: https://clinica-monllor.herokuapp.com/
 
-## Development server
+## Registro de profesional y paciente
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+El profesional se podrán registrar bajo la url https://clinica-monllor.herokuapp.com/register-professional
 
-## Code scaffolding
+El paciente se registrará en la url https://clinica-monllor.herokuapp.com/register
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+como se muestra en la imagen
 
-## Build
+![Registro Paciente](https://github.com/nachomonllor/clinica-client/blob/master/readme_assets/registro.gif)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Login:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+https://clinica-monllor.herokuapp.com/login

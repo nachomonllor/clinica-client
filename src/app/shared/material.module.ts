@@ -37,6 +37,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatExpansionModule} from '@angular/material/expansion';
 import es from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 registerLocaleData(es);
@@ -69,6 +70,7 @@ const modules = [
   NgxMaterialTimepickerModule,
   MatNativeDateModule,
   MatRadioModule,
+  MatExpansionModule,
   // CDK
   A11yModule,
   BidiModule,

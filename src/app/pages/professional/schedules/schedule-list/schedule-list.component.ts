@@ -26,7 +26,8 @@ import { ScheduleDetailComponent } from '../schedule-detail/schedule-detail.comp
   styleUrls: ['./schedule-list.component.scss']
 })
 export class ScheduleListComponent implements OnInit {
-  dataSource: MatTableDataSource<Schedule>;
+  dataSource = new MatTableDataSource<Schedule>([]);
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   displayedColumns: string[] = [
     'Patient',
     'Category',
@@ -50,6 +51,7 @@ export class ScheduleListComponent implements OnInit {
   ngOnInit() {
     this._httpService.get(this.url).subscribe(appointments => {
       this.dataSource = appointments;
+      this.dataSource.paginator = this.paginator;
     });
   }
   onEdit(row) {
@@ -75,6 +77,13 @@ export class ScheduleListComponent implements OnInit {
     dialogConfig.width = '700px';
     dialogConfig.data = data || null;
     return dialogConfig;
+  }
+
+  onSearchFiltered(evt) {
+    const url  = this.url + '/search';
+    this._httpService.search(url, evt ).subscribe(appointments => {
+      this.dataSource =  appointments.payload;
+    });
   }
 
 }

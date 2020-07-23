@@ -11,6 +11,8 @@ import { PipesModule } from '../../../pipes/pipes.module';
 import { ScheduleRoutingModule } from './schedule-routing.module';
 import { ScheduleDetailComponent } from './schedule-detail/schedule-detail.component';
 import { CustomFieldComponent } from '../../../components/customfields/custom-field.component';
+import { ScheduleFilterComponent } from './schedule-filter/schedule-filter.component';
+import { CategoriesModule } from '../../admin/categories/categories.module';
 
 @NgModule({
   imports: [
@@ -20,15 +22,21 @@ import { CustomFieldComponent } from '../../../components/customfields/custom-fi
     ReactiveFormsModule,
     ScheduleRoutingModule,
     PipesModule,
-    SharedModule
+    SharedModule,
+    CategoriesModule
   ],
   declarations: [
     ScheduleComponent,
     ScheduleDetailComponent,
     ScheduleListComponent,
+    ScheduleFilterComponent,
     CustomFieldComponent
   ],
-
+  exports: [
+    ScheduleListComponent,
+    ScheduleFilterComponent,
+    CustomFieldComponent
+  ],
   providers: [],
   entryComponents: []
 })

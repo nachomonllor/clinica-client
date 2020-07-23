@@ -5,10 +5,10 @@ import {
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-polls',
-  templateUrl: './polls.component.html'
+  selector: 'app-schedulesrep',
+  templateUrl: './schedulesrep.component.html'
 })
-export class PollsComponent implements OnInit {
+export class SchedulesRepComponent implements OnInit {
   constructor() {}
   ngOnInit() {}
 }

@@ -22,8 +22,21 @@ export class HttpService {
     } else {
       return this._http.get(url);
     }
-    
-    
+  }
+  public search(url, filter): Observable<any> {
+    // new HttpHeaders() returns an immutable object,
+    // so BE SURE you add your headers to the initial instance
+    let options = {};
+    debugger
+    if (filter) {
+      options = {
+        params: new HttpParams()
+          .set('filter', filter)
+      };
+      return this._http.get(url, options);
+    } else {
+      return this._http.get(url);
+    }
   }
 
   public post(url, payload): Observable<any> {
