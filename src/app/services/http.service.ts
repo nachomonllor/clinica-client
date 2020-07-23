@@ -27,7 +27,6 @@ export class HttpService {
     // new HttpHeaders() returns an immutable object,
     // so BE SURE you add your headers to the initial instance
     let options = {};
-    debugger
     if (filter) {
       options = {
         params: new HttpParams()

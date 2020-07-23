@@ -92,8 +92,12 @@
             <div class="d-table h-100 w-100">
               <div class="d-table-cell align-middle">
                 <div class="col-lg-12 col-xl-12 px-0 py-lg-2 py-2">
-                  <app-grafico-barra [maxValue]="100"></app-grafico-barra>
-                  <!-- <app-grafico-barra [maxValue]="graph.recaladas.maxValue" [barChartLabels]="graph.recaladas.labels" [barChartData]="graph.recaladas.datasets"></app-grafico-barra> -->
+                  <app-grafico-barra
+                    [maxValue]="graficos.grafico2.maxValue"
+                    [barChartLabels]="graficos.grafico2.labels"
+                    [barChartData]="graficos.grafico2.data"
+                  ></app-grafico-barra>
+                  <!-- <app-grafico-barra [maxValue]="graph.recaladas.maxValue" barChartLabels="graph.recaladas.labels" [barChartData]="graph.recaladas.datasets"></app-grafico-barra> -->
                 </div>
                 <!-- <a href="#" (click)="downloadCanvas($event)">EXPORTAR</a> -->
               </div>

@@ -43,7 +43,6 @@ export class GraficoDonaComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnInit() {
-    debugger
     this.export_graph = <HTMLCanvasElement>document.getElementById("myChart");
   }
 
